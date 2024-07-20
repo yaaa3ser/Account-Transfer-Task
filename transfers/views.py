@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
-from django.views.generic import TemplateView, DetailView, FormView
+from django.views.generic import TemplateView, DetailView, FormView, ListView
 from django.db import transaction
 from django.http import HttpResponseBadRequest
 
@@ -40,13 +40,11 @@ class ImportAccountsView(View):
         return redirect('list_accounts')
 
 
-class ListAccountsView(TemplateView):
+class ListAccountsView(ListView):
+    model = Account
     template_name = 'accounts/list_accounts.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['accounts'] = Account.objects.all()
-        return context
+    context_object_name = 'accounts'
+    paginate_by = 10
 
 
 class AccountDetailView(DetailView):
