@@ -6,7 +6,6 @@ The app supports importing accounts from various file formats, listing accounts,
 
 It is Dockerized for easy deployment.
 
-- [Demo](#demo)
 
 ## Feature
 
