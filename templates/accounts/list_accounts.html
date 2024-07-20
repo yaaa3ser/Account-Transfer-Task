@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}List of Accounts{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Accounts</h1>
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for account in accounts %}
+            <tr>
+                <td><a href="{% url 'account_info' slug=account.slug %}">{{ account.id }}</a></td>
+                <td>{{ account.name }}</td>
+                <td>{{ account.balance }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Transfer Funds{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Transfer Funds</h1>
+    <form method="post" class="form-inline">
+        {% csrf_token %}
+        <div class="form-group mb-2">
+            <span class="form-label">{{ form.from_account.label_tag }}</span>
+            {{ form.from_account }}
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <span class="form-label">{{ form.to_account.label_tag }}</span>
+            {{ form.to_account }}
+        </div>
+        <div class="form-group mb-2">
+            <span class="form-label">{{ form.amount.label_tag }}</span>
+            {{ form.amount }}
+        </div>
+        <button type="submit" class="btn btn-primary mb-2 ml-2">Transfer</button>
+    </form>
+{% endblock %}

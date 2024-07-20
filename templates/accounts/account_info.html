@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Account Information{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h1>Account Information</h1>
+            </div>
+            <div class="card-body">
+                <p class="card-text"><strong>ID:</strong> {{ account.id }}</p>
+                <p class="card-text"><strong>Name:</strong> {{ account.name }}</p>
+                <p class="card-text"><strong>Balance:</strong> ${{ account.balance }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
