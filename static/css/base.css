@@ -1,0 +1,45 @@
+header {
+    margin-bottom: 20px;
+}
+
+.nav-item.active .nav-link {
+    font-weight: bold;
+    color: #007bff; 
+    background-color: rgba(0, 123, 255, 0.1); 
+    border-radius: 0.5rem;
+}
+
+.navbar {
+    border-bottom: 1px solid #eaeaea;
+} 
+
+table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+
+table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.form-label {
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 0.5rem; 
+    min-width: 100px; 
+    border: 1px solid #e2e6ea; 
+    border-radius: 0.25rem; 
+    padding: 0.25rem 0.5rem; 
+    background-color: #e2e6ea; 
+    color: #007bff;
+}

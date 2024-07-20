@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Import Accounts{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Import Accounts</h1>
+        <form method="post" enctype="multipart/form-data" class="form-inline">
+            {% csrf_token %}
+            <div class="form-group mb-2">
+                <label for="file" class="sr-only">File</label>
+                <input type="file" name="file" id="file" class="form-control-file">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2 ml-2">Upload</button>
+        </form>
+    </div>
+{% endblock %}
