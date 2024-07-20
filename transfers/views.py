@@ -3,6 +3,7 @@ from django.views import View
 from django.views.generic import TemplateView, DetailView, FormView, ListView
 from django.db import transaction
 from django.http import HttpResponseBadRequest
+from .utils import import_accounts_from_file
 
 from .models import Account
 from .forms import TransferForm
@@ -18,24 +19,29 @@ class ImportAccountsView(View):
         return render(request, self.template_name)
 
     def post(self, request, *args, **kwargs):
-        csv_file = request.FILES.get('csv_file')
-        if not csv_file:
+        generic_file = request.FILES.get('file')
+        if not generic_file:
             return HttpResponseBadRequest("No file uploaded.")
 
-        data = csv_file.read().decode('utf-8')
-        file = StringIO(data)
-        reader = csv.reader(file)
-        next(reader)  # Skip first row --> header
+        records = import_accounts_from_file(generic_file)
         
         # either all rows are successfully imported or none
         with transaction.atomic():
-            for row in reader:
-                if Account.objects.filter(id=row[0]).exists():
+            for row in records:
+                if isinstance(row, list):
+                    # Handle CSV format
+                    account_id, name, balance = row
+                elif isinstance(row, dict):
+                    # Handle JSON or XML format
+                    account_id = row['ID']
+                    name = row['Name']
+                    balance = row['Balance']
+                if Account.objects.filter(id=account_id).exists():
                     continue
                 Account.objects.create(
-                    id=row[0],
-                    name=row[1],
-                    balance=row[2]
+                    id=account_id,
+                    name=name,
+                    balance=balance
                 )
         return redirect('list_accounts')
 
