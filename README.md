@@ -127,7 +127,3 @@ The app is Dockerized for easy deployment and setup.
 - Bootstrap for styling
 - Django for the web framework
 - Docker for containerization
-
-
-## Demo
-![Demo](./demo.gif)
